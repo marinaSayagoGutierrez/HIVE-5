@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v3.0.0 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2024.06.17 a las 12:00:01 PM CEST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://ds.hive5.com/elements">
+    <schemaBindings map="false">
+      <package name="com.hive5.ds.elements"/>
+    </schemaBindings>
+    <bindings scd="tns:userType">
+      <class ref="com.hive5.ds.elements.UserType"/>
+    </bindings>
+    <bindings scd="~tns:roleType">
+      <class ref="com.hive5.ds.elements.RoleType"/>
+    </bindings>
+    <bindings scd="tns:getUserRequest">
+      <class ref="com.hive5.ds.elements.GetUserRequest"/>
+    </bindings>
+    <bindings scd="tns:getUserResponse">
+      <class ref="com.hive5.ds.elements.GetUserResponse"/>
+    </bindings>
+    <bindings scd="tns:createUserRequest">
+      <class ref="com.hive5.ds.elements.CreateUserRequest"/>
+    </bindings>
+    <bindings scd="tns:createUserResponse">
+      <class ref="com.hive5.ds.elements.CreateUserResponse"/>
+    </bindings>
+    <bindings scd="tns:deleteUserRequest">
+      <class ref="com.hive5.ds.elements.DeleteUserRequest"/>
+    </bindings>
+    <bindings scd="tns:deleteUserResponse">
+      <class ref="com.hive5.ds.elements.DeleteUserResponse"/>
+    </bindings>
+    <bindings scd="tns:updateUserRequest">
+      <class ref="com.hive5.ds.elements.UpdateUserRequest"/>
+    </bindings>
+    <bindings scd="tns:updateUserResponse">
+      <class ref="com.hive5.ds.elements.UpdateUserResponse"/>
+    </bindings>
+    <bindings scd="tns:getAllUserRequest">
+      <class ref="com.hive5.ds.elements.GetAllUserRequest"/>
+    </bindings>
+    <bindings scd="tns:getAllUserResponse">
+      <class ref="com.hive5.ds.elements.GetAllUserResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+
