@@ -1,0 +1,38 @@
+<wsdl:definitions name="CreateCardProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/CreateCardProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/CreateCardProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0/WSDLs/CreateCardProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="CreateCardProcess">
+        <plnk:role name="CreateCardProcessProvider" portType="client:CreateCardProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="card.wsdl"/>
+    <wsdl:message name="CreateCardProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:createCardRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateCardProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:createCardResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CreateCardProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:CreateCardProcessRequestMessage"/>
+            <wsdl:output message="client:CreateCardProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CreateCardProcessBinding" type="client:CreateCardProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="createcardprocess_client_ep">
+        <wsdl:port name="CreateCardProcess_pt" binding="client:CreateCardProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0*soa_a5300d45-7b9c-4b6b-8166-f5e8343f9b4d/createcardprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

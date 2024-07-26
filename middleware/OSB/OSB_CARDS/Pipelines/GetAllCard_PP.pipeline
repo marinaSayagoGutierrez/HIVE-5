@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="OSB_CARDS/WSDLs/getallcardprocess_client_ep"/>
+            <con:binding>
+                <con:name>GetAllCardProcessBinding</con:name>
+                <con:namespace>http://xmlns.oracle.com/SOAHive5/SOA_CARDS/GetAllCardProcess</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:template-overrides>
+            <con:placeholder-override id="PlaceholderID_N53ef27e5.482c65ca.0.18fbee1f758.N7ff8">
+                <con:stage id="_StageId-N3f57fea7.N660d1358.0.19049306992.N7ff9" name="Stage2">
+                    <con:context>
+                        <con1:userNsDecl prefix="elem" namespace="http://ds.hive5.com/elements" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                    </con:context>
+                    <con:actions>
+                        <con1:assign varName="getAllCardRequest" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fea7.N660d1358.0.19049306992.N7ff5</con2:id>
+                            <con1:expr>
+                                <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/elem:getAllCardRequest</con2:xqueryText>
+                            </con1:expr>
+                        </con1:assign>
+                    </con:actions>
+                </con:stage>
+            </con:placeholder-override>
+            <con:placeholder-override id="PlaceholderID_N53ef27e5.482c65ca.0.18fbee1f758.N7ff7">
+                <con:stage id="_StageId-N3f57fea7.N660d1358.0.19049306992.N7ff8" name="Stage2">
+                    <con:context>
+                        <con1:userNsDecl prefix="elem" namespace="http://ds.hive5.com/elements" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                    </con:context>
+                    <con:actions>
+                        <con1:assign varName="getAllCardResponse" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-N3f57fea7.N660d1358.0.19049306992.N7ff2</con2:id>
+                            <con1:expr>
+                                <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$body/elem:getAllCardResponse</con2:xqueryText>
+                            </con1:expr>
+                        </con1:assign>
+                    </con:actions>
+                </con:stage>
+            </con:placeholder-override>
+            <con:placeholder-override id="PlaceholderID_N53ef27e5.482c65ca.0.18fbee1f758.N7fed">
+                <con:actions/>
+            </con:placeholder-override>
+            <con:action-override id="_ActionId-N3f57fea7.N24d30704.0.19049426626.N7ff8">
+                <con1:route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+                    <con1:service ref="OSB_CARDS/SOAP/GetAllCard_BS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                    <con1:operation>process</con1:operation>
+                </con1:route>
+            </con:action-override>
+        </con:template-overrides>
+    </con:router>
+    <con:template ref="OSB_CARDS/Pipelines/CardPipelineTemplate"/>
+</con:pipelineEntry>

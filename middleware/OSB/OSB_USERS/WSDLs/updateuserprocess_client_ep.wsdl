@@ -1,0 +1,38 @@
+<wsdl:definitions name="UpdateUserProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/UpdateUserProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/UpdateUserProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0/WSDLs/UpdateUserProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="UpdateUserProcess">
+        <plnk:role name="UpdateUserProcessProvider" portType="client:UpdateUserProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="user.wsdl"/>
+    <wsdl:message name="UpdateUserProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:updateUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UpdateUserProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:updateUserResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="UpdateUserProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:UpdateUserProcessRequestMessage"/>
+            <wsdl:output message="client:UpdateUserProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="UpdateUserProcessBinding" type="client:UpdateUserProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="updateuserprocess_client_ep">
+        <wsdl:port name="UpdateUserProcess_pt" binding="client:UpdateUserProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0*soa_4a4d4dbb-6a98-492e-b20e-dbbef9c823d1/updateuserprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

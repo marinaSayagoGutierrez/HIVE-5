@@ -1,0 +1,89 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Jun 19 13:03:46 CEST 2024
+  Author:  6002898
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="CreateUserProcess"
+               targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns1="http://ds.hive5.com/elements">
+
+    <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess" location="../WSDLs/CreateUserProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="createuserprocess_client" partnerLinkType="client:CreateUserProcess" myRole="CreateUserProcessProvider"/>
+    <partnerLink name="User_DS" partnerLinkType="ns1:User_DS" partnerRole="UsersPort"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:CreateUserProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:CreateUserProcessResponseMessage"/>
+    <variable name="Invoke_createUser_InputVariable" messageType="ns1:createUserRequest"/>
+    <variable name="Invoke_createUser_OutputVariable" messageType="ns1:createUserResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in CreateUserProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="createuserprocess_client" portType="client:CreateUserProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Transformation1">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/TransformationCreateRequest.xsl", $inputVariable.payload)</from>
+        <to variable="Invoke_createUser_InputVariable" part="createUserRequest"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke" partnerLink="User_DS" portType="ns1:UsersPort"
+            operation="createUser" inputVariable="Invoke_createUser_InputVariable"
+            outputVariable="Invoke_createUser_OutputVariable" bpelx:invokeAsDetail="no"/>
+    <assign name="Transformation2">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from>ora:doXSLTransformForDoc("../Transformations/TransformationCreateResponse.xsl", $Invoke_createUser_OutputVariable.createUserResponse)</from>
+        <to variable="outputVariable" part="payload"/>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="createuserprocess_client" portType="client:CreateUserProcess" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

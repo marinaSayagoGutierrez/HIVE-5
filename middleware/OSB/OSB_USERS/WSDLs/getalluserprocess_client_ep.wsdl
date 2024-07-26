@@ -1,0 +1,47 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="GetAllUserProcess"
+     targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserProcess"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserProcess"
+     xmlns:ns1="http://ds.hive5.com/elements"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0/WSDLs/GetAllUserProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="GetAllUserProcess">
+        <plnk:role name="GetAllUserProcessProvider" portType="client:GetAllUserProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="user.wsdl"/>
+    <wsdl:message name="GetAllUserProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:getAllUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllUserProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:getAllUserResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAllUserProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:GetAllUserProcessRequestMessage"/>
+            <wsdl:output message="client:GetAllUserProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetAllUserProcessBinding" type="client:GetAllUserProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getalluserprocess_client_ep">
+        <wsdl:port name="GetAllUserProcess_pt" binding="client:GetAllUserProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0*soa_5fabd4b6-0625-493e-9bef-c738aeec629e/getalluserprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

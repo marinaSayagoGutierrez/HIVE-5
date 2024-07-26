@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dgm:gDiagram xmlns:dgm="http://xmlns.oracle.com/sca/soadgm">
+    <dgm:gService name="getalluserprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="632" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="625" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="getalluserprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserProcess#wsdl.interface(GetAllUserProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="getalluserbyboardidprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="514" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="507" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="getalluserbyboardidprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserByBoardIdProcess#wsdl.interface(GetAllUserByBoardIdProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="getuserprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="396" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="389" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="getuserprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetUserProcess#wsdl.interface(GetUserProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="createuserprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="278" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="271" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="createuserprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess#wsdl.interface(CreateUserProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="updateuserprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="160" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="153" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="updateuserprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/UpdateUserProcess#wsdl.interface(UpdateUserProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gService name="deleteuserprocess_client_ep">
+        <dgm:body borderWidth="2" arcRad="20" X="21" Y="41" width="137" height="84">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="11" Y="34" width="156" height="98">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:outputPort name="deleteuserprocess_client_ep" X="127" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/DeleteUserProcess#wsdl.interface(DeleteUserProcess)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="20" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>process</dgm:item>
+        </dgm:operations>
+    </dgm:gService>
+    <dgm:gReference name="User_DS">
+        <dgm:body borderWidth="2" arcRad="20" X="596" Y="306" width="136" height="144">
+            <dgm:borderColor r="153" g="153" b="153"/>
+            <dgm:bgColor r="255" g="255" b="255"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="586" Y="299" width="156" height="158">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="User_DS" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/adapters/designtime/adapter/images/soap_service_20x20.png" X="27" Y="4" width="20" height="20"/>
+        <dgm:operations>
+            <dgm:item>getAllUserByBoardId</dgm:item>
+            <dgm:item>getUser</dgm:item>
+            <dgm:item>deleteUser</dgm:item>
+            <dgm:item>createUser</dgm:item>
+            <dgm:item>updateUser</dgm:item>
+            <dgm:item>getAllUser</dgm:item>
+        </dgm:operations>
+    </dgm:gReference>
+    <dgm:gComponent name="GetAllUserProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="617" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="610" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="getalluserprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserProcess#wsdl.interface(GetAllUserProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="GetAllUserByBoardIdProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="499" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="492" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="getalluserbyboardidprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserByBoardIdProcess#wsdl.interface(GetAllUserByBoardIdProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="GetUserProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="381" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="374" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="getuserprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetUserProcess#wsdl.interface(GetUserProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="CreateUserProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="263" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="256" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="createuserprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess#wsdl.interface(CreateUserProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="UpdateUserProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="145" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="138" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="updateuserprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/UpdateUserProcess#wsdl.interface(UpdateUserProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gComponent name="DeleteUserProcess">
+        <dgm:body borderWidth="2" arcRad="20" X="274" Y="26" width="130" height="61">
+            <dgm:borderColor r="69" g="113" b="140"/>
+            <dgm:lightBgColor r="166" g="208" b="230"/>
+            <dgm:darkBgColor r="99" g="162" b="201"/>
+        </dgm:body>
+        <dgm:shadow arcRad="20" X="264" Y="19" width="150" height="77">
+            <dgm:bgColor r="196" g="228" b="240"/>
+        </dgm:shadow>
+        <dgm:inputPort name="deleteuserprocess_client" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/SOAHive5/SOA_USERS/DeleteUserProcess#wsdl.interface(DeleteUserProcess)"/>
+        <dgm:outputPort name="User_DS" X="120" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://ds.hive5.com/elements#wsdl.interface(UsersPort)"/>
+        <dgm:nodeIcon URI="/oracle/tip/tools/ide/bpel/shared/plugins/resources/images/soa/process_20x20.png" X="10" Y="4" width="20" height="20"/>
+    </dgm:gComponent>
+    <dgm:gWireLink source="getalluserprocess_client_ep" target="GetAllUserProcess/getalluserprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="642" X2="264" Y2="642"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="GetAllUserProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="642" X2="517" Y2="642"/>
+        <dgm:gSegment X1="517" Y1="642" X2="517" Y2="316"/>
+        <dgm:gSegment X1="517" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="getalluserbyboardidprocess_client_ep" target="GetAllUserByBoardIdProcess/getalluserbyboardidprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="524" X2="264" Y2="524"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="GetAllUserByBoardIdProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="524" X2="502" Y2="524"/>
+        <dgm:gSegment X1="502" Y1="524" X2="502" Y2="316"/>
+        <dgm:gSegment X1="502" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="getuserprocess_client_ep" target="GetUserProcess/getuserprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="406" X2="264" Y2="406"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="GetUserProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="406" X2="487" Y2="406"/>
+        <dgm:gSegment X1="487" Y1="406" X2="487" Y2="316"/>
+        <dgm:gSegment X1="487" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="createuserprocess_client_ep" target="CreateUserProcess/createuserprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="288" X2="264" Y2="288"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="CreateUserProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="288" X2="532" Y2="288"/>
+        <dgm:gSegment X1="532" Y1="288" X2="532" Y2="316"/>
+        <dgm:gSegment X1="532" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="updateuserprocess_client_ep" target="UpdateUserProcess/updateuserprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="170" X2="264" Y2="170"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="UpdateUserProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="170" X2="547" Y2="170"/>
+        <dgm:gSegment X1="547" Y1="170" X2="547" Y2="316"/>
+        <dgm:gSegment X1="547" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="deleteuserprocess_client_ep" target="DeleteUserProcess/deleteuserprocess_client" width="2">
+        <dgm:gSegment X1="168" Y1="51" X2="264" Y2="51"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+    <dgm:gWireLink source="DeleteUserProcess/User_DS" target="User_DS" width="2">
+        <dgm:gSegment X1="414" Y1="51" X2="562" Y2="51"/>
+        <dgm:gSegment X1="562" Y1="51" X2="562" Y2="316"/>
+        <dgm:gSegment X1="562" Y1="316" X2="586" Y2="316"/>
+        <dgm:baseColor r="153" g="153" b="153"/>
+        <dgm:selectedColor r="49" g="106" b="196"/>
+    </dgm:gWireLink>
+</dgm:gDiagram>

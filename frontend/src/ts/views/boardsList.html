@@ -1,0 +1,184 @@
+<div id="wrapper">
+    <div style="display: flex; align-items: center">
+      <div style="font-size: 32px; color: #ffffff; font-weight: bold">
+        Bienvenido,
+      </div>
+      <div style="font-size: 32px; color: #ffffff; font-weight: bold; margin-left: 10px;">
+        <oj-bind-text value="[[user().firstName]]"></oj-bind-text>
+        <oj-bind-text value="[[user().lastName]]"></oj-bind-text>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: right">
+      <oj-menu-button id="menuButton2" style="color: white;">
+        Menu
+        <!-- To handle menu item selection, use an action listener as shown, not a click listener. -->
+        <oj-menu slot="menu">
+            <!-- Display user information -->
+            <oj-option>
+                <div style="display: flex; align-items: center;">
+                  <oj-input-text
+                  id="inputProfile"
+                  label-hint="Usuario:"
+                  value="{{user().firstName}}"
+                  readonly
+                ></oj-input-text>              </div>
+            </oj-option>
+            <oj-option>
+              <div style="display: flex; align-items: center;">
+                <oj-input-text
+                id="inputProfile"
+                label-hint="Email:"
+                value="{{user().email}}"
+                readonly
+              ></oj-input-text>              </div>
+          </oj-option>
+  
+            <oj-option id="divider"></oj-option>
+  
+            <oj-option disabled>
+                <div style="border-top: 1px solid #fff; margin: 5px 0;"></div>
+          </oj-option>
+          <!-- Log out option -->
+          <oj-option id="opt2" style="color: white;" on-oj-action="[[logout]]">Log out</oj-option>
+        </oj-menu>
+    </oj-menu-button>
+    </div>
+
+    <oj-bind-if test="[[user().role.id == 1]]">
+    <div class="export-cards">
+      <oj-button
+        id="exportButton"
+        class="exportButton"
+        on-oj-action="[[showExportDialog]]"
+        data-oj-clickthrough="disabled"
+        display="icons"
+        chroming="borderless">
+        <div class="export-cards">
+          Move Cards
+          <span class="oj-ux-ico-exchange-h"></span>
+        </div>
+        
+      </oj-button>
+    </div>
+
+  </oj-bind-if>
+  
+    <div class="grid-container-boards">
+      <div class="columna">
+        <div class="header-container">
+          <h1 id="cardsHeader" class="header-title">TABLEROS</h1>
+          <oj-button
+            class="oj-sm-margin-4x-end"
+            data-oj-clickthrough="disabled"
+            display="icons"
+            chroming="borderless"
+            on-oj-action="[[showCreateDialog]]">
+            <span slot="startIcon" class="oj-ux-ico-plus-circle"></span>
+            Add Item
+          </oj-button>
+        </div>
+        <oj-list-view id="boardsList" 
+        class="card-display" 
+        aria-labelledby="cardsHeader" 
+        data="[[boardSource]]" 
+        gridlines.item="visible" 
+        selection-mode="single" 
+        on-selected-changed="[[selectedBoardChanged]]" 
+        scroll-policy="loadMoreOnScroll">
+          <template slot="itemTemplate">
+            <div class="board" style="position: relative;"> <!-- Agregado posición relativa -->
+              <div>
+                <strong>
+                  <oj-bind-text value="[[$current.data.name]]"></oj-bind-text>
+                </strong>
+                <div class="board-buttons">
+                  
+                  <oj-button
+                    data-oj-clickthrough="disabled"
+                    :id="[['edit_' + $current.data.id]]"
+                    display="icons"
+                    chroming="borderless"
+                    on-oj-action="[[showEditDialog]]"
+                    class="edit-button">
+                    <span slot="startIcon" class="oj-ux-ico-edit"></span>
+                    Edit Item
+                  </oj-button>
+                  <oj-button
+                    data-oj-clickthrough="disabled"
+                    :id="[['delete_' + $current.data.id]]"
+                    display="icons"
+                    chroming="borderless"
+                    on-oj-action="[[deleteBoard]]"
+                    class="delete-button">
+                    <span slot="startIcon" class="oj-ux-ico-trash"></span>
+                    Remove Item
+                  </oj-button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </oj-list-view>
+      </div>
+    </div>
+
+    <oj-dialog id="createDialog" style="display: none" dialog-title="Create New Board" cancel-behavior="icon">
+      <div slot="body">
+        <oj-input-text
+          value="{{board().name}}"
+          label-hint="Board Name" required validators="[[validatorTitle]]"
+        ></oj-input-text>
+      </div>
+      <div slot="footer">
+        <oj-button on-oj-action="[[createBoard]]">Create</oj-button>
+      </div>
+    </oj-dialog>
+
+    <oj-dialog id="editDialog" style="display: none" dialog-title="Edit Board" cancel-behavior="icon">
+      <div slot="body">
+        <oj-input-text
+          value="{{board().name}}"
+          label-hint="Board Name" required validators="[[validatorTitle]]"
+        ></oj-input-text>
+      </div>
+      <div slot="footer">
+        <oj-button on-oj-action="[[updateBoard]]">Update</oj-button>
+      </div>
+    </oj-dialog>
+
+    <oj-dialog id="exportDialog" style="display: none" dialog-title="Export Board to another board" cancel-behavior="icon">
+      <div slot="body">
+        <div>
+          <oj-select-single
+          class="demo-text-field-info"
+          data="[[boardsDPSend]]"
+          value="{{sendBoardId}}"
+          on-value-changed="[[boardChanged]]"
+          label-hint="From">
+        </oj-select-single>
+        </div>
+
+        <div>
+          <oj-select-single
+          class="demo-text-field-info"
+          data="[[boardsDPReceive]]"
+          value="{{receivedBoardId}}"
+          on-value-changed="[[boardChanged]]"
+          label-hint="To">
+        </oj-select-single>
+        </div>
+      </div>
+      <div slot="footer">
+        <oj-button on-oj-action="[[changeBoard]]">Move</oj-button>
+      </div>
+    </oj-dialog>
+  
+    
+  
+        
+    </div>
+  
+    
+  </div>
+  
+  

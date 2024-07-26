@@ -1,0 +1,38 @@
+<wsdl:definitions name="CreateUserProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/CreateUserProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0/WSDLs/CreateUserProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="CreateUserProcess">
+        <plnk:role name="CreateUserProcessProvider" portType="client:CreateUserProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="user.wsdl"/>
+    <wsdl:message name="CreateUserProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:createUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateUserProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:createUserResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CreateUserProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:CreateUserProcessRequestMessage"/>
+            <wsdl:output message="client:CreateUserProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CreateUserProcessBinding" type="client:CreateUserProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="createuserprocess_client_ep">
+        <wsdl:port name="CreateUserProcess_pt" binding="client:CreateUserProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0*soa_4a4d4dbb-6a98-492e-b20e-dbbef9c823d1/createuserprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

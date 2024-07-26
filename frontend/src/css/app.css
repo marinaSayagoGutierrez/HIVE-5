@@ -1,0 +1,418 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application specific styles should be included
+*/
+@font-face {
+  font-family: 'Nulshock BD';
+  src: url('./fonts/nulshock-bd.woff2') format('woff2'),
+       url('./fonts/nulshock-bd.woff') format('woff'),
+       url('./fonts/nulshock-bd.otf') format('opentype');
+  /* Añade otros estilos como font-weight y font-style si es necesario */
+}
+
+html, head, header, body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #1D4355;
+  height: 100vh;
+  font-family:'Nulshock BD'Arial, sans-serif;
+}
+
+header {
+  background-image: linear-gradient(to bottom, #00AFDA, #81e0f8);
+}
+
+header img {
+  padding-top: 10%;
+  width: 120px;
+}
+
+header h1 {
+  margin-top: 0px;
+  font-size: 25px;
+}
+
+.container1 {
+  align-content: center;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  display: left;
+}
+
+#MyForm {
+  border-radius: 2%;
+  border: 1px solid white;
+  background-image: linear-gradient(to bottom, rgb(0, 175, 218), rgb(160, 233, 252));
+  padding: 5%;
+  width: 60%;
+  margin-top: 4% !important;
+  margin: auto;
+  backdrop-filter: blur(10px);
+}
+
+#inputEmail {
+  height: 5rem;
+  width: 90%;
+  padding-left: 7%;
+}
+#inputPass, #inputLastName, #inputName {
+  width: 90%;
+  padding-left: 7%;
+}
+#inicioH1 {
+  margin: auto;
+  padding-bottom: 5%;
+}
+#inputs {
+  margin: auto;
+  width: 100%;
+}
+
+#submitBtn {
+  border: solid;
+  border-radius: 10px;
+  display: block;
+  width: 50%;
+  margin: auto;
+  margin-top: 10%;
+  background-color: #ffffff;
+}
+
+#nav {
+  margin-top: -55px;
+}
+
+#logoutBtn {
+  border: solid;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+#wrapper {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 20px;
+}
+
+#tittle h1 {
+  background: white;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.placeholder {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  color: #999;
+}
+
+hr {
+  border-color: black;
+  border-width: 2px;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: white;
+}
+
+.columna {
+  flex: 1;
+  min-width: 300px;
+  margin: 10px;
+  text-align: center;
+  padding: 1%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.columna h1 {
+  color: #1D4355;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.columna .tableros {
+  background-image: linear-gradient(to bottom, rgb(0, 175, 218), rgb(160, 233, 252));
+  color: black;
+}
+
+.card {
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  height: 100px;
+}
+
+.demo-metadata {
+  display: block;
+  margin-top: 5px;
+  color: #ffffff;
+}
+
+.cardButton {
+  margin: 5px;
+  background-color: #81e0f8;
+  border: solid;
+  border-radius: 40px;
+}
+
+.custom-log-alert {
+  border: solid;
+  border-radius: 10px;
+  display: block;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  background-color: #f44336;
+  color: white;
+  font-size: 18px;
+  z-index: 9999;
+}
+
+.my-form-style {
+  background-color: #FFFFFF;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 20px;
+  width: 50%;
+  margin: 40px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.styled-input {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.styled-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.styled-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  #tittle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardButton {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .columna {
+    min-width: 100%;
+  }
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: nowrap; /* Asegura que las columnas no se envuelvan */
+  gap: 20px; /* Espacio entre columnas */
+  color: white;
+}
+
+.columna {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  padding: 1%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 50%; /* Asegura que todas las columnas tengan la misma altura */
+}
+
+.card {
+  padding: 7% 0%;
+  padding-top: 10%;
+  border: 1px solid rgb(255, 255, 255);
+  width: 100%;
+  background-color: #084d6d;
+  height: 100px;
+  cursor: grab; /* Indica que la tarjeta es arrastrable */
+}
+
+.card:active {
+  cursor: grabbing; /* Cambia el cursor cuando se arrastra */
+}
+
+/* Media query para hacer que las columnas se adapten a pantallas más pequeñas */
+@media (max-width: 768px) {
+  .grid-container {
+    flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+  }
+
+  .columna {
+    min-width: 100%; /* Asegura que las columnas ocupen todo el ancho en pantallas pequeñas */
+  }
+}
+
+.grid-container-boards {
+  padding-top: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: white;
+  justify-content: center; /* Alinear los boards en el centro */
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.board {
+  width: calc(100% - 20px); /* Ajuste dinámico del ancho de los boards */
+  margin: 10px; /* Margen entre boards */
+  background-color: #084d6d;
+  height: 100px; /* Ajustado para mayor visibilidad */
+  cursor: pointer; /* Indica que la tarjeta es clickeable */
+  display: flex; /* Agregar display flex para alinear el texto */
+  justify-content: center; /* Alinear el texto en el centro */
+  align-items: center; /* Alinear el texto en el centro verticalmente */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  transition: background-color 0.3s, transform 0.3s; /* Transición suave para el hover */
+}
+
+.board:hover {
+  background-color: #06699d; /* Cambia el fondo cuando se pasa el mouse por encima */
+  transform: translateY(-5px); /* Eleva el board ligeramente al pasar el mouse */
+}
+
+.board strong {
+  font-size: 24px; /* Tamaño de fuente ajustado */
+  color: #ffffff;
+  text-align: center; /* Alinear el título en el centro */
+}
+
+.edit-button, .delete-button {
+  cursor: pointer; /* Indica que el ícono es clickeable */
+  transition: color 0.3s; /* Transición suave para el cambio de color */
+}
+
+.edit-button .oj-ux-ico-edit, .delete-button .oj-ux-ico-trash {
+  color: white; /* Color blanco para los íconos */
+}
+
+.edit-button:hover .oj-ux-ico-edit {
+  color: darkorange; /* Cambia el color cuando se pasa el mouse por encima */
+}
+
+.delete-button:hover .oj-ux-ico-trash {
+  color: darkred; /* Cambia el color cuando se pasa el mouse por encima */
+}
+
+.header-container {
+  display: flex;
+  align-items: center; /* Alinear verticalmente al centro */
+
+  gap: 10px; /* Espacio entre el título y el botón */
+  margin-left: 38%;
+}
+
+.header-title {
+  text-align: center; /* Centrar el texto horizontalmente */
+}
+
+.oj-button .oj-sm-margin-4x-end{
+  /* Ajustes opcionales para el botón, como tamaño de fuente, color, etc. */
+  font-size: 14px; /* Tamaño de fuente ajustado */
+}
+
+.export-cards {
+  display: flex;
+  justify-content: flex-end;
+  color: #084d6d;/* Color del texto en blanco */
+  font-size: 20px; /* Tamaño de fuente */
+  margin-top: 2%;
+}
+
+.exportButton {
+  background-color: #ffffff; /* Color de fondo del botón */
+  color: white; /* Color del texto en blanco */
+  border: none; /* Sin borde */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 5px 8px; /* Espaciado interno */
+  
+}
+
+.export-cards span {
+  margin-left: 8px; /* Espacio entre el texto y el icono */
+}
+
+/* Asegurarse de que el contenedor de la lista use flexbox para disposición horizontal */
+.horizontal-list {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+/* Ajustar los ítems de la lista para disposición horizontal */
+.horizontal-list .oj-listview-item-element {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-icon {
+  width: 50px;
+  height: 50px;
+}
+.profile-item {
+  text-align: center;
+  flex: 1; 
+}

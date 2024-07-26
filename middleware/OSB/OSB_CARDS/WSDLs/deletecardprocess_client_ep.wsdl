@@ -1,0 +1,38 @@
+<wsdl:definitions name="DeleteCardProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/DeleteCardProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/DeleteCardProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0/WSDLs/DeleteCardProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="DeleteCardProcess">
+        <plnk:role name="DeleteCardProcessProvider" portType="client:DeleteCardProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="card.wsdl"/>
+    <wsdl:message name="DeleteCardProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:deleteCardRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteCardProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:deleteCardResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="DeleteCardProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:DeleteCardProcessRequestMessage"/>
+            <wsdl:output message="client:DeleteCardProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DeleteCardProcessBinding" type="client:DeleteCardProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="deletecardprocess_client_ep">
+        <wsdl:port name="DeleteCardProcess_pt" binding="client:DeleteCardProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0*soa_a5300d45-7b9c-4b6b-8166-f5e8343f9b4d/deletecardprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

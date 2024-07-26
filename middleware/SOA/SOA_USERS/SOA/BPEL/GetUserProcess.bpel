@@ -1,0 +1,119 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Jun 19 12:59:44 CEST 2024
+  Author:  6002898
+  Type: BPEL 2.0 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="GetUserProcess"
+               targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetUserProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetUserProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:ui="http://xmlns.oracle.com/soa/designer"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns1="http://ds.hive5.com/elements">
+
+    <import ui:processWSDL="true" namespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetUserProcess" location="../WSDLs/GetUserProcess.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="getuserprocess_client" partnerLinkType="client:GetUserProcess" myRole="GetUserProcessProvider"/>
+    <partnerLink name="User_DS" partnerLinkType="ns1:User_DS" partnerRole="UsersPort"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:GetUserProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:GetUserProcessResponseMessage"/>
+    <variable name="Invoke_getUser_InputVariable" messageType="ns1:getUserRequest"/>
+    <variable name="Invoke_getUser_OutputVariable" messageType="ns1:getUserResponse"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in GetUserProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="getuserprocess_client" portType="client:GetUserProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+    <assign name="Assign1">
+      <copy>
+        <from>$inputVariable.payload/ns1:userId</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$Invoke_getUser_InputVariable.getUserRequest/ns1:userId</to>
+      </copy>
+    </assign>
+    <invoke name="Invoke" partnerLink="User_DS" portType="ns1:UsersPort" operation="getUser"
+            inputVariable="Invoke_getUser_InputVariable" outputVariable="Invoke_getUser_OutputVariable"
+            bpelx:invokeAsDetail="no"/>
+    <assign name="Assign2">
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:id</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:id</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:boards/ns1:board</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:boards/ns1:board</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:firstName</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:firstName</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:lastName</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:lastName</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:email</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:email</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:password</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:password</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:role/ns1:id</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:role/ns1:id</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:role/ns1:name</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:role/ns1:name</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:boards/ns1:board/ns1:id</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:boards/ns1:board/ns1:id</to>
+      </copy>
+      <copy>
+        <from>$Invoke_getUser_OutputVariable.getUserResponse/ns1:user/ns1:boards/ns1:board/ns1:name</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$outputVariable.payload/ns1:user/ns1:boards/ns1:board/ns1:name</to>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="getuserprocess_client" portType="client:GetUserProcess" operation="process" variable="outputVariable"/>
+  </sequence>
+</process>

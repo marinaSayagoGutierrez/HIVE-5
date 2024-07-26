@@ -1,0 +1,38 @@
+<wsdl:definitions name="DeleteUserProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/DeleteUserProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/DeleteUserProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0/WSDLs/DeleteUserProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="DeleteUserProcess">
+        <plnk:role name="DeleteUserProcessProvider" portType="client:DeleteUserProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="user.wsdl"/>
+    <wsdl:message name="DeleteUserProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:deleteUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteUserProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:deleteUserResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="DeleteUserProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:DeleteUserProcessRequestMessage"/>
+            <wsdl:output message="client:DeleteUserProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DeleteUserProcessBinding" type="client:DeleteUserProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="deleteuserprocess_client_ep">
+        <wsdl:port name="DeleteUserProcess_pt" binding="client:DeleteUserProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0*soa_4a4d4dbb-6a98-492e-b20e-dbbef9c823d1/deleteuserprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

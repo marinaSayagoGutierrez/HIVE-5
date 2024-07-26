@@ -1,0 +1,73 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+  <div style="display: flex; justify-content: center;">
+    <div id="tittle" class="tittle" style="display: flex; align-items: center;">
+      <h1 id="wrapperH1" style="margin: 0;">MI PERFIL</h1>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: right">
+    <oj-menu-button id="menuButton2" style="color: white;">
+      Menu
+      <!-- To handle menu item selection, use an action listener as shown, not a click listener. -->
+      <oj-menu slot="menu">
+          <!-- Display user information -->
+          <oj-option>
+              <div style="display: flex; align-items: center;">
+                <oj-input-text
+                id="inputProfile"
+                label-hint="Usuario:"
+                value="{{user().firstName}}"
+                readonly
+              ></oj-input-text>              </div>
+          </oj-option>
+          <oj-option>
+            <div style="display: flex; align-items: center;">
+              <oj-input-text
+              id="inputProfile"
+              label-hint="Email:"
+              value="{{user().email}}"
+              readonly
+            ></oj-input-text>              </div>
+        </oj-option>
+
+          <oj-option id="divider"></oj-option>
+
+          <oj-option disabled>
+              <div style="border-top: 1px solid #fff; margin: 5px 0;"></div>
+          </oj-option>
+          <!-- Log out option -->
+          <oj-option id="opt2" style="color: white;" on-oj-action="[[logout]]">Log out</oj-option>
+      </oj-menu>
+  </oj-menu-button>
+  </div>
+
+
+  
+  <oj-form-layout id="form-container"  class="oj-flex-item my-form-style">
+    <oj-input-text
+      id="inputProfile"
+      label-hint="First Name"
+      value="{{user().firstName}}"
+    ></oj-input-text>
+    <oj-input-text
+      id="inputProfile"
+      label-hint="Last Name"
+      value="{{user().lastName}}"
+    ></oj-input-text>
+    <oj-input-text
+      id="inputProfile"
+      label-hint="Email"
+      value="{{user().email}}"
+    ></oj-input-text>
+    <div class="profileButtonDiv">
+    <oj-button id="update" on-oj-action="[[submit]]" >Actualizar</oj-button>
+    </div>
+  </form> 
+
+
+</div>

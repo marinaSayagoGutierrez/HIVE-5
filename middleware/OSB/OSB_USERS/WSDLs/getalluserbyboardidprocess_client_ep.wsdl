@@ -1,0 +1,38 @@
+<wsdl:definitions name="GetAllUserByBoardIdProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserByBoardIdProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_USERS/GetAllUserByBoardIdProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0/WSDLs/GetAllUserByBoardIdProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="GetAllUserByBoardIdProcess">
+        <plnk:role name="GetAllUserByBoardIdProcessProvider" portType="client:GetAllUserByBoardIdProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="user.wsdl"/>
+    <wsdl:message name="GetAllUserByBoardIdProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:getAllUserByBoardIdRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllUserByBoardIdProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:getAllUserByBoardIdResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAllUserByBoardIdProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:GetAllUserByBoardIdProcessRequestMessage"/>
+            <wsdl:output message="client:GetAllUserByBoardIdProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetAllUserByBoardIdProcessBinding" type="client:GetAllUserByBoardIdProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getalluserbyboardidprocess_client_ep">
+        <wsdl:port name="GetAllUserByBoardIdProcess_pt" binding="client:GetAllUserByBoardIdProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_USERS!1.0*soa_33f13a6c-ea48-468a-94c3-bb600093b77e/getalluserbyboardidprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

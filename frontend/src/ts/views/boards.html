@@ -1,0 +1,327 @@
+<div id="wrapper">
+  <div style="display: flex; align-items: center">
+    <div style="font-size: 32px; color: #ffffff; font-weight: bold">
+      Bienvenido,
+    </div>
+    <div style="font-size: 32px; color: #ffffff; font-weight: bold; margin-left: 10px;">
+      <oj-bind-text value="[[user().firstName]]"></oj-bind-text>
+      <oj-bind-text value="[[user().lastName]]"></oj-bind-text>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: right">
+    <oj-menu-button id="menuButton2" style="color: white;">
+      Menu
+      <!-- To handle menu item selection, use an action listener as shown, not a click listener. -->
+      <oj-menu slot="menu">
+          <!-- Display user information -->
+          <oj-option>
+              <div style="display: flex; align-items: center;">
+                <oj-input-text
+                id="inputProfile"
+                label-hint="Usuario:"
+                value="{{user().firstName}}"
+                readonly
+              ></oj-input-text>              </div>
+          </oj-option>
+          <oj-option>
+            <div style="display: flex; align-items: center;">
+              <oj-input-text
+              id="inputProfile"
+              label-hint="Email:"
+              value="{{user().email}}"
+              readonly
+            ></oj-input-text>              </div>
+        </oj-option>
+
+          <oj-option id="divider"></oj-option>
+
+          <oj-option disabled>
+              <div style="border-top: 1px solid #fff; margin: 5px 0;"></div>
+        </oj-option>
+        <!-- Log out option -->
+        <oj-option id="opt2" style="color: white;" on-oj-action="[[logout]]">Log out</oj-option>
+      </oj-menu>
+  </oj-menu-button>
+  </div>
+
+  <div id="tittle">
+    <div style="display: flex; flex-wrap: wrap;">
+      <div style="flex: 1; flex-basis: auto;">
+        <h1 id="wrapperH1"><oj-bind-text value="{{boardName}}"></oj-bind-text></h1>
+      </div>
+      <div style="flex: 1; flex-basis: auto;">
+        <oj-list-view
+          id="activitiesListUser"
+          class="horizontal-list"
+          aria-labelledby="cardsHeader"
+          data="[[userDatasourse]]"
+          gridlines.item="visible"
+          scroll-policy="loadMoreOnScroll"
+        >
+        <template slot="itemTemplate" data-oj-as="user">
+          <oj-bind-if test="[[user.data.boards !== null]]">
+            <oj-bind-if test="[[isUserInBoard(user.data.boards.board)]]">
+              <div class="profile-item">
+                <oj-avatar
+                  class="profile-icon"  
+                  role="img"
+                  initials="[[computeInitials(user.data.firstName, user.data.lastName)]]"
+                  background="blue"
+                  shape="circle"
+                  size="xs"
+                  :aria-label="[[user.data.firstName + ' ' + user.data.lastName]]"
+                  :title="[[user.data.firstName + ' ' + user.data.lastName]]"></oj-avatar> 
+              </div>
+            </oj-bind-if>
+          </oj-bind-if> 
+        </template>
+        </oj-list-view>
+      </div>
+    </div>
+    <!-- <h1 id="wrapperH1"><oj-bind-text value="{{boardName}}"></oj-bind-text></h1> -->
+    <div>
+      <oj-button id="createButton" class="cardButton" on-oj-action="[[showCreateDialog]]">Create</oj-button>
+      <oj-button id="updateButton" class="cardButton" disabled="[[!userSelected()]]" on-oj-action="[[showEditDialog]]">Update / Delete</oj-button>
+    </div>
+  </div>
+  <hr />
+
+  <div class="grid-container">
+    <div class="columna">
+      <h1 id="cardsHeader">TO DO</h1>
+      <oj-list-view id="activitiesList1" class="card-display" aria-labelledby="cardsHeader" data="[[cardSourceTodo]]" gridlines.item="visible" selection-mode="single" selected="{{selectedItemTodo}}" on-selected-changed="[[selectedItemChangedTodo]]" scroll-policy="loadMoreOnScroll" dnd.drag.items.data-types='["application/ojlistviewitems+json"]' dnd.drag.items.drag-start="[[handleStart]]" dnd.drag.items.drag-end="[[handleEnd]]" dnd.drop.items.data-types='["application/ojlistviewitems+json"]' dnd.drop.items.drop="[[handleDrop.bind($data, 'activitiesList1')]]">
+        <template slot="itemTemplate">
+          <div class="card"
+          draggable="true"
+          on-dragstart="[[handleStart]]"
+          on-dragend="[[handleEnd]]"
+          slot="action"
+          role="button"
+          tabindex="0"
+          class="oj-sm-margin-4x-horizontal oj-listview-drag-handle">
+            <div style="display: flex; flex-wrap: wrap;">
+              <div style="flex: 1; padding: 3px;">
+                <strong>
+                  <oj-bind-text value="[[$current.data.title]]"></oj-bind-text>
+                </strong>
+              </div>
+              <div  style="flex: 0.5; padding: 3px;">
+                <oj-avatar
+                  role="img"
+                  initials="[[computeInitials($current.data.user.firstName, $current.data.user.lastName)]]"
+                  background="blue"
+                  shape="circle"
+                  size="xs"
+                  :aria-label="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"
+                  :title="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"></oj-avatar>
+              </div>
+            </div>
+            <div>
+              <span class="demo-metadata">
+                <oj-bind-text value="[[$current.data.endDate]]"></oj-bind-text>
+              </span>
+            </div>
+            <div>
+              <span class="demo-metadata">
+                <oj-bind-text value="[[$current.data.user.email]]"></oj-bind-text>
+              </span>
+
+              <div
+                slot="action"
+                role="button"
+                tabindex="0"
+                class="oj-sm-margin-4x-horizontal oj-listview-drag-handle">
+              </div>
+            </div>
+          </div>
+        </template>
+      </oj-list-view>
+    </div>
+
+      <div class="columna">
+        <h1 id="cardsHeader">DOING</h1>
+        <oj-list-view id="activitiesList2" 
+        class="card-display" 
+        aria-labelledby="cardsHeader" 
+        data="[[cardSourceDoing]]" 
+        gridlines.item="visible" 
+        selection-mode="single" 
+        selected="{{selectedItemDoing}}" 
+        on-selected-changed="[[selectedItemChangedDoing]]" 
+        scroll-policy="loadMoreOnScroll" 
+        dnd.drag.items.data-types='["application/ojlistviewitems+json"]' 
+        dnd.drag.items.drag-start="[[handleStart]]" 
+        dnd.drag.items.drag-end="[[handleEnd]]" 
+        dnd.drop.items.data-types='["application/ojlistviewitems+json"]' 
+        dnd.drop.items.drop="[[handleDrop.bind($data, 'activitiesList2')]]">
+          <template slot="itemTemplate">
+            <div class="card"
+            draggable="true"
+            on-dragstart="[[handleStart]]"
+            on-dragend="[[handleEnd]]">
+            <div style="display: flex; flex-wrap: wrap;">
+            <div style="flex: 1; padding: 3px;">
+              <strong>
+                <oj-bind-text value="[[$current.data.title]]"></oj-bind-text>
+              </strong>
+            </div>
+            <div  style="flex: 0.5; padding: 3px;">
+              <oj-avatar
+                role="img"
+                initials="[[computeInitials($current.data.user.firstName, $current.data.user.lastName)]]"
+                background="blue"
+                shape="circle"
+                size="xs"
+                :aria-label="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"
+                :title="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"></oj-avatar>
+            </div>
+          </div>
+              <div>
+                <span class="demo-metadata">
+                  <oj-bind-text value="[[$current.data.endDate]]"></oj-bind-text>
+                </span>
+              </div>
+              <div>
+                <span class="demo-metadata">
+                  <oj-bind-text value="[[$current.data.user.email]]"></oj-bind-text>
+                </span>
+
+                <div
+                          slot="action"
+                          role="button"
+                          tabindex="0"
+                          class="oj-sm-margin-4x-horizontal oj-listview-drag-handle"></div>
+              </div>
+            </div>
+          </template>
+        </oj-list-view>
+      </div>
+
+      <div class="columna">
+        <h1 id="cardsHeader">BLOCKED</h1>
+        <oj-list-view id="activitiesList3" 
+        class="card-display" 
+        aria-labelledby="cardsHeader" 
+        data="[[cardSourceBlocked]]" 
+        gridlines.item="visible" 
+        selection-mode="single" 
+        selected="{{selectedItemBlocked}}" 
+        on-selected-changed="[[selectedItemChangedBlocked]]" 
+        scroll-policy="loadMoreOnScroll" 
+        dnd.drag.items.data-types='["application/ojlistviewitems+json"]' 
+        dnd.drag.items.drag-start="[[handleStart]]" 
+        dnd.drag.items.drag-end="[[handleEnd]]" 
+        dnd.drop.items.data-types='["application/ojlistviewitems+json"]' 
+        dnd.drop.items.drop="[[handleDrop.bind($data, 'activitiesList3')]]">
+          <template slot="itemTemplate">
+            <div class="card" 
+            draggable="true"
+            on-dragstart="[[handleStart]]"
+            on-dragend="[[handleEnd]]">
+            <div style="display: flex; flex-wrap: wrap;">
+            <div style="flex: 1; padding: 3px;">
+              <strong>
+                <oj-bind-text value="[[$current.data.title]]"></oj-bind-text>
+              </strong>
+            </div>
+            <div  style="flex: 0.5; padding: 3px;">
+              <oj-avatar
+                role="img"
+                initials="[[computeInitials($current.data.user.firstName, $current.data.user.lastName)]]"
+                background="blue"
+                shape="circle"
+                size="xs"
+                :aria-label="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"
+                :title="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"></oj-avatar>
+            </div>
+          </div>
+              <div>
+                <span class="demo-metadata">
+                  <oj-bind-text value="[[$current.data.endDate]]"></oj-bind-text>
+                </span>
+              </div>
+              <div>
+                <span class="demo-metadata">
+                  <oj-bind-text value="[[$current.data.user.email]]"></oj-bind-text>
+                </span>
+  
+                <div
+                          slot="action"
+                          role="button"
+                          tabindex="0"
+                          class="oj-sm-margin-4x-horizontal oj-listview-drag-handle"></div>
+              </div>
+            </div>
+          </template>
+        </oj-list-view>
+      </div>
+
+      <div class="columna">
+        <h1 id="cardsHeader">DONE</h1>
+      <oj-list-view id="activitiesList4" class="card-display" aria-labelledby="cardsHeader" data="[[cardSourceDone]]" 
+      gridlines.item="visible" selection-mode="single" selected="{{selectedItemDone}}" 
+      on-selected-changed="[[selectedItemChangedDone]]" scroll-policy="loadMoreOnScroll" 
+      dnd.drag.items.data-types='["application/ojlistviewitems+json"]' dnd.drag.items.drag-start="[[handleStart]]" 
+      dnd.drag.items.drag-end="[[handleEnd]]" dnd.drop.items.data-types='["application/ojlistviewitems+json"]' 
+      dnd.drop.items.drop="[[handleDrop.bind($data, 'activitiesList4')]]">
+        <template slot="itemTemplate">
+          <div class="card"
+            draggable="true"
+            on-dragstart="[[handleStart]]"
+            on-dragend="[[handleEnd]]">
+            <div style="display: flex; flex-wrap: wrap;">
+              <div style="flex: 1; padding: 3px;">
+                <strong>
+                  <oj-bind-text value="[[$current.data.title]]"></oj-bind-text>
+                </strong>
+              </div>
+              <div  style="flex: 0.5; padding: 3px;">
+                <oj-avatar
+                  role="img"
+                  initials="[[computeInitials($current.data.user.firstName, $current.data.user.lastName)]]"
+                  background="blue"
+                  shape="circle"
+                  size="xs"
+                  :aria-label="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"
+                  :title="[[$current.data.user.firstName + ' ' + $current.data.user.lastName]]"></oj-avatar>
+              </div>
+            </div>
+            <div>
+              <span class="demo-metadata">
+                <oj-bind-text value="[[$current.data.endDate]]"></oj-bind-text>
+              </span>
+            </div>
+            <div>
+              <span class="demo-metadata">
+                <oj-bind-text value="[[$current.data.user.email]]"></oj-bind-text>
+              </span>
+
+              <div role="button" tabindex="0" class="oj-flex-item oj-listview-drag-handle">
+            </div>
+          </div>
+        </template>
+      </oj-list-view>
+    </div>
+  </div>
+
+  <oj-dialog id="createDialog" style="display: none" dialog-title="Create New Card" cancel-behavior="icon">
+    <div slot="body">
+      <demo-component mode="Create" card="{{card()}}"> </demo-component>
+    </div>
+    <div slot="footer">
+      <oj-button on-oj-action="[[createCard]]">Create</oj-button>
+    </div>
+  </oj-dialog>
+
+  <oj-dialog id="editDialog" style="display: none" dialog-title="Edit Card" cancel-behavior="icon">
+    <div slot="body">
+      <demo-component mode="Edit" card="{{card()}}"></demo-component>
+    </div>
+    <div slot="footer">
+      <oj-button on-oj-action="[[deleteCard]]">Delete</oj-button>
+      <oj-button on-oj-action="[[updateCard]]">Update</oj-button>
+    </div>
+  </oj-dialog>
+</div>
+

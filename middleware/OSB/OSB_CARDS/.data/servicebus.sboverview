@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:composite xmlns:ns="http://xmlns.oracle.com/sca/1.0">
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_CARDS/SOAP/GetAllCard_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_CARDS/SOAP/CreateCard_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_CARDS/SOAP/UpdateCard_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_CARDS/SOAP/DeleteCrad_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_CARDS/SOAP/GetCard_BS"/>
+    </ns:reference>
+</ns:composite>

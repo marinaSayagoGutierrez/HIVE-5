@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sch="http://ds.hive5.com/elements" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="CreateCard_Experience">RestService</doc>
+   <grammars>
+      <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ds.hive5.com/elements" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://ds.hive5.com/elements" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ds.hive5.com/elements">
+            <xs:element name="card">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:int"/>
+                        <xs:element name="title" type="xs:string"/>
+                        <xs:element name="description" type="xs:string"/>
+                        <xs:element name="startDate" type="xs:date"/>
+                        <xs:element name="endDate" type="xs:date"/>
+                        <xs:element name="priority" type="xs:int"/>
+                        <xs:element name="user" type="tns:userType"/>
+                        <xs:element name="board" type="tns:boardType"/>
+                        <xs:element name="status" type="tns:statusType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="userType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="username" type="xs:string"/>
+                    <xs:element name="email" type="xs:string"/>
+                    <xs:element name="password" type="xs:string"/>
+                    <xs:element name="role" type="tns:roleType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="roleType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="boardType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="statusType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:card"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="title" type="xs:string"/>
+                        <xs:element minOccurs="0" name="description" type="xs:string"/>
+                        <xs:element name="startDate" type="xs:date"/>
+                        <xs:element name="endDate" type="xs:date"/>
+                        <xs:element name="priority" type="xs:int"/>
+                        <xs:element name="userId" type="xs:int"/>
+                        <xs:element name="boardId" type="xs:int"/>
+                        <xs:element name="statusId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:card"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateCardRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cardId" type="xs:int"/>
+                        <xs:element name="title" type="xs:string"/>
+                        <xs:element name="description" type="xs:string"/>
+                        <xs:element name="startDate" type="xs:date"/>
+                        <xs:element name="endDate" type="xs:date"/>
+                        <xs:element name="priority" type="xs:int"/>
+                        <xs:element name="userId" type="xs:int"/>
+                        <xs:element name="boardId" type="xs:int"/>
+                        <xs:element name="statusId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:card"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllCardRequest">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="getAllCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" ref="tns:card"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="POST" soa:wsdlOperation="process">
+            <request>
+               <representation mediaType="application/json" element="cns:createCardRequest" xmlns:cns="http://ds.hive5.com/elements"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:createCardResponse" xmlns:cns="http://ds.hive5.com/elements"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+    
+     targetNamespace="http://ds.hive5.com/elements"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:sch="http://ds.hive5.com/elements"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:tns="http://ds.hive5.com/elements"
+    >
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ds.hive5.com/elements">
+            <xs:element name="user">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:int"/>
+                        <xs:element name="firstName" type="tns:nameType"/>
+                        <xs:element name="lastName" type="tns:nameType"/>
+                        <xs:element name="email" type="tns:emailType"/>
+                        <xs:element name="password" type="tns:passwordType"/>
+                        <xs:element name="role" type="tns:roleType"/>
+                        <xs:element name="boards" type="tns:boardsType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="boardsType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="board" type="tns:boardType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="boardType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="boardsIdType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="boardId" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="passwordType">
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="8"/>
+                    <xs:maxLength value="50"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="nameType">
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="3"/>
+                    <xs:maxLength value="50"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="emailType">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z0-9]{3,15}@[a-z]{3}\.[a-z]{1,7}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="roleType">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="getUserRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="userId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:user"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createUserRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="firstName" type="xs:string"/>
+                        <xs:element name="lastName" type="xs:string"/>
+                        <xs:element name="email" type="xs:string"/>
+                        <xs:element name="password" type="xs:string"/>
+                        <xs:element name="roleId" type="xs:int"/>
+                        <xs:element name="boards" type="tns:boardsIdType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:user"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteUserRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="userId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateUserRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="userId" type="xs:int"/>
+                        <xs:element name="firstName" type="xs:string"/>
+                        <xs:element name="lastName" type="xs:string"/>
+                        <xs:element name="email" type="xs:string"/>
+                        <xs:element name="password" type="xs:string"/>
+                        <xs:element name="roleId" type="xs:int"/>
+                        <xs:element name="boards" type="tns:boardsIdType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="tns:user"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllUserByBoardIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="boardId" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllUserByBoardIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" ref="tns:user"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllUserRequest">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="getAllUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" ref="tns:user"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getAllUserByBoardIdRequest">
+        <wsdl:part name="getAllUserByBoardIdRequest" element="sch:getAllUserByBoardIdRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getAllUserByBoardIdResponse">
+        <wsdl:part name="getAllUserByBoardIdResponse" element="sch:getAllUserByBoardIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getUserRequest">
+        <wsdl:part name="getUserRequest" element="sch:getUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getUserResponse">
+        <wsdl:part name="getUserResponse" element="sch:getUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="deleteUserRequest">
+        <wsdl:part name="deleteUserRequest" element="sch:deleteUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="deleteUserResponse">
+        <wsdl:part name="deleteUserResponse" element="sch:deleteUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createUserRequest">
+        <wsdl:part name="createUserRequest" element="sch:createUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="createUserResponse">
+        <wsdl:part name="createUserResponse" element="sch:createUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="updateUserRequest">
+        <wsdl:part name="updateUserRequest" element="sch:updateUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="updateUserResponse">
+        <wsdl:part name="updateUserResponse" element="sch:updateUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAllUserRequest">
+        <wsdl:part name="getAllUserRequest" element="sch:getAllUserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="getAllUserResponse">
+        <wsdl:part name="getAllUserResponse" element="sch:getAllUserResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="UsersPort">
+        <wsdl:operation name="getAllUserByBoardId">
+            <wsdl:input name="getAllUserByBoardIdRequest" message="sch:getAllUserByBoardIdRequest"/>
+            <wsdl:output name="getAllUserByBoardIdResponse" message="sch:getAllUserByBoardIdResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getUser">
+            <wsdl:input name="getUserRequest" message="sch:getUserRequest"/>
+            <wsdl:output name="getUserResponse" message="sch:getUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteUser">
+            <wsdl:input name="deleteUserRequest" message="sch:deleteUserRequest"/>
+            <wsdl:output name="deleteUserResponse" message="sch:deleteUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createUser">
+            <wsdl:input name="createUserRequest" message="sch:createUserRequest"/>
+            <wsdl:output name="createUserResponse" message="sch:createUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <wsdl:input name="updateUserRequest" message="sch:updateUserRequest"/>
+            <wsdl:output name="updateUserResponse" message="sch:updateUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllUser">
+            <wsdl:input name="getAllUserRequest" message="sch:getAllUserRequest"/>
+            <wsdl:output name="getAllUserResponse" message="sch:getAllUserResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="UsersPortSoap11" type="sch:UsersPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAllUserByBoardId">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAllUserByBoardIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllUserByBoardIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deleteUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="deleteUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updateUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllUser">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAllUserRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllUserResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="UsersPortService">
+        <wsdl:port name="UsersPortSoap11" binding="sch:UsersPortSoap11">
+            <soap:address location="http://localhost:81/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,38 @@
+<wsdl:definitions name="GetAllCardProcess" targetNamespace="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/GetAllCardProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAHive5/SOA_CARDS/GetAllCardProcess" xmlns:ns1="http://ds.hive5.com/elements" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0/WSDLs/GetAllCardProcess.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="GetAllCardProcess">
+        <plnk:role name="GetAllCardProcessProvider" portType="client:GetAllCardProcess"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="http://ds.hive5.com/elements" location="card.wsdl"/>
+    <wsdl:message name="GetAllCardProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:getAllCardRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllCardProcessResponseMessage">
+        <wsdl:part name="payload" element="ns1:getAllCardResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAllCardProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:GetAllCardProcessRequestMessage"/>
+            <wsdl:output message="client:GetAllCardProcessResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetAllCardProcessBinding" type="client:GetAllCardProcess">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getallcardprocess_client_ep">
+        <wsdl:port name="GetAllCardProcess_pt" binding="client:GetAllCardProcessBinding">
+            <soap:address location="http://localhost:7101/soa-infra/services/default/SOA_CARDS!1.0*soa_1c9bfd2d-9a64-42d1-aefd-de0b1a06ec66/getallcardprocess_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

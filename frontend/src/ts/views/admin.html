@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>usuarios</title>
+    <style>
+      .usuario-card {
+        color: rgb(2, 29, 36);
+        padding: 10px;
+      }
+
+      .usuario-card-line {
+        display: flex;
+        align-items: center;
+      }
+      .usuario-card-line > * {
+        margin-right: 10px;
+      }
+      .separator-bar {
+        border-left: 1px solid rgb(2, 2, 2);
+        height: 1.2em;
+        margin: 0 10px;
+      }
+      .white-button {
+        background-color: white;
+        color: rgb(6, 64, 80);
+        border: 1px solid #ccc;
+      }
+      .white-button:hover {
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="oj-hybrid-padding">
+      <!-- Botón para crear nuevo usuario -->
+      <div style="text-align: right">
+        <oj-button class="white-button" on-oj-action="[[openCreateUserDialog]]"
+          >Crear Usuario</oj-button
+        >
+        <oj-button
+          class="white-button"
+          on-oj-action="[[openUpdateUserDialog]]"
+          disabled="[[!userSelected()]]"
+          >Actualizar Usuario</oj-button
+        >
+        <oj-button
+          class="white-button"
+          on-oj-action="[[openDeleteUserDialog]]"
+          disabled="[[!userSelected()]]"
+          >Eliminar Usuario</oj-button
+        >
+        <oj-button
+          class="white-button"
+          on-oj-action="[[openAsignDialog]]"
+          disabled="[[!userSelected()]]"
+          >Asignar Tablero</oj-button
+        >
+      </div>
+
+      <!-- Lista de usuarios -->
+      <div class="usuarios-container">
+        <h1 id="cardsHeader" style="color: rgb(3, 37, 46)">Usuarios</h1>
+        <oj-list-view
+          id="activitiesList1"
+          class="usuarios-grid"
+          aria-labelledby="cardsHeader"
+          data="[[userDatasourse]]"
+          gridlines.item="visible"
+          selection-mode="single"
+          scroll-policy="loadMoreOnScroll"
+          on-selected-changed="[[selectUser]]"
+        >
+          <template slot="itemTemplate">
+            <div class="usuario-card">
+              <div class="usuario-card-line">
+                <span class="usuario-card-label"><strong>Nombre:</strong></span>
+                <span
+                  ><strong
+                    ><oj-bind-text
+                      value="[[$current.data.firstName]]"
+                    ></oj-bind-text></strong
+                ></span>
+              </div>
+              <div class="usuario-card-line">
+                <span class="usuario-card-label"
+                  ><strong>Apellido:</strong></span
+                >
+                <span
+                  ><strong
+                    ><oj-bind-text
+                      value="[[$current.data.lastName]]"
+                    ></oj-bind-text></strong
+                ></span>
+              </div>
+              <div class="usuario-card-line">
+                <span class="usuario-card-label"><strong>Correo:</strong></span>
+                <span
+                  ><strong
+                    ><oj-bind-text
+                      value="[[$current.data.email]]"
+                    ></oj-bind-text></strong
+                ></span>
+              </div>
+              <div class="usuario-card-line">
+                <span class="usuario-card-label"><strong>Rol:</strong></span>
+                <span
+                  ><strong
+                    ><oj-bind-text
+                      value="[[$current.data.role.name]]"
+                    ></oj-bind-text></strong
+                ></span>
+              </div>
+              <oj-bind-if test="[[$current.data.boards !== null]]">
+                <div class="usuario-card-line">
+                  <span class="usuario-card-label"
+                    ><strong>Boards:</strong></span
+                  >
+                  <span
+                    ><strong
+                      ><oj-bind-text
+                        value="[[getBoards($current.data.boards.board)]]"
+                      ></oj-bind-text></strong
+                  ></span>
+                </div>
+              </oj-bind-if>
+              <!-- Botón Asignar tablero -->
+            </div>
+          </template>
+        </oj-list-view>
+      </div>
+
+      <!-- Diálogo para crear nuevo usuario -->
+      <oj-dialog id="createUserDialog" dialog-title="Crear Usuario">
+        <div>
+          <oj-form-layout>
+            <oj-input-text
+              id="newFirstName"
+              label-hint="Nombre"
+              value="{{user().firstName}}"
+            ></oj-input-text>
+            <oj-input-text
+              id="newLastName"
+              label-hint="Apellido"
+              value="{{user().lastName}}"
+            ></oj-input-text>
+            <oj-input-text
+              id="newEmail"
+              label-hint="Correo"
+              value="{{user().email}}"
+            ></oj-input-text>
+            <oj-input-text
+              id="newPassword"
+              label-hint="Password"
+              value="{{user().password}}"
+            ></oj-input-text>
+            <div class="oj-form-control-max-width-md">
+              <oj-select-single
+                label-hint="Role"
+                label-edge="inside"
+                data="[[rolesDP]]"
+                value="{{user().role}}"
+              >
+              </oj-select-single>
+            </div>
+
+            <oj-select-many
+              id="select"
+              value="{{user().boards.board}}"
+              label-hint="Boards"
+              options="[[boardsDP]]"
+              class="oj-form-control-max-width-md"
+            >
+            </oj-select-many>
+
+            <oj-button on-oj-action="[[addUser]]">Agregar</oj-button>
+            <oj-button on-oj-action="[[closeCreateUserDialog]]"
+              >Cancelar</oj-button
+            >
+          </oj-form-layout>
+        </div>
+      </oj-dialog>
+    </div>
+
+    <!-- Diálogo para actualizar usuario -->
+    <oj-dialog id="editDialog" dialog-title="Actualizar Usuario">
+      <div>
+        <oj-form-layout>
+          <oj-input-text
+            id="editFirstName"
+            label-hint="Nombre"
+            value="{{user().firstName}}"
+          ></oj-input-text>
+          <oj-input-text
+            id="editLastName"
+            label-hint="Apellido"
+            value="{{user().lastName}}"
+          ></oj-input-text>
+          <oj-input-text
+            id="editEmail"
+            label-hint="Correo"
+            value="{{user().email}}"
+          ></oj-input-text>
+          <oj-input-text
+            id="editPassword"
+            label-hint="Password"
+            value="{{user().password}}"
+          ></oj-input-text>
+          <div class="oj-form-control-max-width-md">
+            <oj-select-single
+              label-hint="Role"
+              label-edge="inside"
+              data="[[rolesDP]]"
+              value="{{user().role}}"
+            >
+            </oj-select-single>
+          </div>
+          <oj-select-many
+            id="select"
+            value="{{user().boards.board}}"
+            label-hint="Boards"
+            options="[[boardsDP]]"
+            class="oj-form-control-max-width-md"
+          >
+          </oj-select-many>
+
+          <oj-button on-oj-action="[[updateUser]]">Guardar Cambios</oj-button>
+          <oj-button on-oj-action="[[closeUpdateUserDialog]]"
+            >Cancelar</oj-button
+          >
+        </oj-form-layout>
+      </div>
+    </oj-dialog>
+
+    <!-- Diálogo para eliminar usuario -->
+    <oj-dialog id="deleteUserDialog" dialog-title="Eliminar Usuario">
+      <div>
+        <p>
+          ¿Estás seguro de que quieres eliminar al usuario
+          <strong
+            ><oj-bind-text value="{{user().firstName}}"></oj-bind-text>
+            <oj-bind-text value="{{user().lastName}}"></oj-bind-text></strong
+          >?
+        </p>
+        <oj-button on-oj-action="[[deleteUser]]">Eliminar</oj-button>
+        <oj-button on-oj-action="[[closeDeleteUserDialog]]">Cancelar</oj-button>
+      </div>
+    </oj-dialog>
+
+    <!-- Diálogo para eliminar usuario -->
+    <oj-dialog id="AsignBoardDialog" dialog-title="Asignar boards para usuario">
+      <oj-select-many
+        id="select"
+        value="{{user().boards.board}}"
+        label-hint="Boards"
+        options="[[boardsDP]]"
+        class="oj-form-control-max-width-md"
+      >
+      </oj-select-many>
+      <oj-button on-oj-action="[[asignar]]">asignar</oj-button>
+      <oj-button on-oj-action="[[closeAsignDialog]]">Cancelar</oj-button>
+    </oj-dialog>
+
+    <oj-dialog id="emailDialog" dialog-title="Cambiar email">
+      <div>
+        <p>¿Estás seguro de que quieres cambiar el email? <strong><oj-bind-text value="{{user().email}}"></oj-bind-text> <oj-bind-text value="{{user().lastName}}"></oj-bind-text></strong>?</p>
+        <oj-button on-oj-action="[[updateEmailUser]]">Aceptar</oj-button>
+        <oj-button on-oj-action="[[closeEmailDialog]]">Cancelar</oj-button>
+
+      </div>
+    </oj-dialog>
+
+    <script type="module" src="path/to/your/js/viewModel.js"></script>
+  </body>
+</html>

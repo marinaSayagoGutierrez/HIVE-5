@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:composite xmlns:ns="http://xmlns.oracle.com/sca/1.0">
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/DeleteUser_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/GetAllUser_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/GetAllUserByBoardId_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/GetUser_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/CreateUser_BS"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:OSB_USERS/SOAP/UpdateUser_BS"/>
+    </ns:reference>
+</ns:composite>

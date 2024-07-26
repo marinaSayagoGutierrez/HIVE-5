@@ -1,0 +1,21 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+
+  <div id="MyForm" class="oj-flex oj-align-items-center">
+    <h1 id="inicioH1">Iniciar Sesión</h1>
+    <div id="inputs">
+    <form data-bind="submit: acceder">
+      <input type="email" data-bind="value: user().email" placeholder="Email" required class="styled-input">
+      <input type="password" data-bind="value: user().password" placeholder="Password" required class="styled-input">
+      <div class="button-container">
+        <button type="submit" class="styled-button">Submit</button>
+      </div>
+    </form>
+    </div>
+  </div>
+ </div>
+</div>
